@@ -96,7 +96,7 @@ document.querySelector(".btn-hold").addEventListener("click", function () {
     document.getElementById("score-" + activePlayer).textContent =
       scores[activePlayer];
     // Ug toglogch hojison esehiig shalgah (onoo ni 100-c ih eseh) shalgah
-    if (scores[activePlayer] >= 20) {
+    if (scores[activePlayer] >= 100) {
       // Togloomiig duussan tobolt oruulna
       isNewGame = false;
       // Yalagch gesen text nerniih ni orond garna
