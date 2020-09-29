@@ -1,21 +1,48 @@
-// Toglogchiin eeljiig hadgalah hubisagch, negdugeer toglogchiig 0, hoerdugaar togologhiig 1 gej temdeglee
-var activePlayer = 0;
+// Togloomiin buh gazart ashiglagdah global hubisagchdiig end zarlah
 
-// Toglogchdiin tsugluulsan onoog hadgalah hubisagch
-var scores = [0, 0];
-// Toglogchii eeljindee tsugluulaj bgaa onoog hadgalah hubisagch
-var roundScore = 0;
-// Shoonii ali talaaraa buusniig hadgalah hubisagch heregtei, 1-6 gesen utgiig ene hubisagchid sanamsarguigeer uusgej ogno
-var diceNumber = Math.floor(Math.random() * 6) + 1;
+// Ali toglogch shoo shideh be gedgiig end hadgalna, er ni bol var activePlayer, scores, roundScore; geed bichej bolno, gehdee iluu oilgomjtoi, pro bhiin tuld tustai bichih
+var activePlayer;
+// Hoer toglogchiin tsugluulsan onoonuud
+var scores;
+// Idebhtei toglogchiin tsugluulg bgaa eeljiin ono
+var roundScore;
 
-// Program ehlehed beltgee
-document.getElementById("score-0").textContent = "0";
-document.getElementById("score-1").textContent = "0";
-document.getElementById("current-0").textContent = "0";
-document.getElementById("current-1").textContent = "0";
-
+// Shoonii zurgiig vzvvleh elemntiig DOM-oos haij olood end hadgalya
 var diceDom = document.querySelector(".dice");
-diceDom.style.display = "none";
+
+// Togloomiig ehllulne
+initGame();
+// Togloomiig shineer ehlehed beltegne
+function initGame() {
+  // Toglogchiin eeljiig hadgalah hubisagch, negdugeer toglogchiig 0, hoerdugaar togologhiig 1 gej temdeglee
+  activePlayer = 0;
+
+  // Toglogchdiin tsugluulsan onoog hadgalah hubisagch
+  scores = [0, 0];
+  // Toglogchii eeljindee tsugluulaj bgaa onoog hadgalah hubisagch
+  roundScore = 0;
+  // Shoonii ali talaaraa buusniig hadgalah hubisagch heregtei, 1-6 gesen utgiig ene hubisagchid sanamsarguigeer uusgej ogno
+  var diceNumber = Math.floor(Math.random() * 6) + 1;
+
+  // Program ehlehed beltgee
+  document.getElementById("score-0").textContent = "0";
+  document.getElementById("score-1").textContent = "0";
+  document.getElementById("current-0").textContent = "0";
+  document.getElementById("current-1").textContent = "0";
+
+  // Toglogchdiin nerrig butsaaj gargah
+  document.getElementById("name-0").textContent = "Player 1";
+  document.getElementById("name-1").textContent = "Player 2";
+
+  document.querySelector(".player-0-panel").classList.remove("winner");
+  document.querySelector(".player-1-panel").classList.remove("winner");
+  // hojsonii daraa active ulaan dot alga bolgood, butsaad new game ehlehed player1 deer active boloh
+  document.querySelector(".player-0-panel").classList.remove("active");
+  document.querySelector(".player-1-panel").classList.remove("active");
+
+  document.querySelector(".player-0-panel").classList.add("active");
+  diceDom.style.display = "none";
+}
 
 // Shoog shideg event listner HICHEEL #43
 document.querySelector(".btn-roll").addEventListener("click", function () {
@@ -90,3 +117,5 @@ function switchToNextPlayer() {
   // Shoog tur alga bolgono
   diceDom.style.display = "none";
 }
+// #45 New Game buyu shine togloom ehluuleh tobchnii event listner
+document.querySelector(".btn-new").addEventListener("click", initGame);
